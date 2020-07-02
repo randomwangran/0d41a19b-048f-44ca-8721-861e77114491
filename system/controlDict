@@ -1,9 +1,9 @@
 /*--------------------------------*- C++ -*----------------------------------*\
-| =========                 |                                                 |
-| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  5                                     |
-|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
-|    \\/     M anipulation  |                                                 |
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  7
+     \\/     M anipulation  |
 \*---------------------------------------------------------------------------*/
 FoamFile
 {
@@ -15,7 +15,7 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-application     snappyHexMesh;
+application     simpleFoam;
 
 startFrom       latestTime;
 
@@ -23,17 +23,17 @@ startTime       0;
 
 stopAt          endTime;
 
-endTime         100;
+endTime         3000;
 
 deltaT          1;
 
 writeControl    runTime;
 
-writeInterval   1;
+writeInterval   100;
 
 purgeWrite      0;
 
-writeFormat     ascii;
+writeFormat     binary;
 
 writePrecision  6;
 
@@ -45,6 +45,21 @@ timePrecision   6;
 
 runTimeModifiable true;
 
+functions
+{
+    forces
+    {
+        type                forces;
+        libs                ("libforces.so");
+        writeControl        timeStep;
+        writeInterval       10;
+        patches             (wing);
+        rho                 rhoInf;
+        log                 true;
+        rhoInf              1;
+        CofR                (0.4974612746 -0.01671895744 0.125);
+    }
 }
+
 
 // ************************************************************************* //

@@ -10,50 +10,20 @@ FoamFile
     version     2.0;
     format      ascii;
     class       dictionary;
-    object      fvSchemes;
+    location    "3000/uniform";
+    object      time;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-ddtSchemes
-{
-    default steadyState;
-}
+value           3000;
 
-gradSchemes
-{
-    default         Gauss linear;
-    grad(p)         Gauss linear;
-    grad(U)         Gauss linear;
-}
+name            "3000";
 
-divSchemes
-{
-    default         none;
-    div(phi,U)      bounded Gauss linearUpwind grad(U);
-    div(phi,k)      bounded Gauss upwind;
-    div(phi,omega)  bounded Gauss upwind;
-    div((nuEff*dev2(T(grad(U))))) Gauss linear;
-}
+index           3000;
 
-laplacianSchemes
-{
-    default         Gauss linear corrected;
-}
+deltaT          1;
 
-interpolationSchemes
-{
-    default         linear;
-}
-
-snGradSchemes
-{
-    default         corrected;
-}
-
-wallDist
-{
-    method meshWave;
-}
+deltaT0         1;
 
 
 // ************************************************************************* //
