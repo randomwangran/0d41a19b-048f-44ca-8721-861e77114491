@@ -28,7 +28,7 @@ addLayers       true;
 // - to 'snap' the mesh boundary to the surface
 geometry
 {
-    wing
+    cylinder
     {
         //type    triSurfaceMesh;
         //file    "wing_5degrees.obj";
